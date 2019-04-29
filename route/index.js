@@ -1,23 +1,27 @@
+const router = require('koa-router')({
+    prefix: '/'
+})
 const controller = require("../controller");
 const { tables, methods } = require('./route');
-
+console.log(tables, methods);
 let routes = tables.reduce((obj, key) => {
-    const o = require(`../controllers/${key}`);
+    const o = require(`../controller/${key}`);
+    console.log(Object.keys(o));
     const arr = Object.keys(o).reduce((total, each) => {
-        Object.keys(o[each]).forEach(i => {
-            let item = { path: `/${key}/${i}`, service: key, action: i, type: each };
-            total.push(item);
-        })
+        let item = { path: `${key}/${each}`, service: key, action: each };
+        total.push(item);
         return total;
     }, []);
     obj = obj.concat(arr);
     return obj;
 }, []);
 
+console.log(routes);
+
 routes.forEach(item => {
-    const service = require(`../controllers/${item.service}`);
+    const service = require(`../controller/${item.service}`);
     methods.forEach(method => {
-        router[method](item.path, service[item.type][item.action])
+        router[method](item.path, service[item.action])
     })
 });
 

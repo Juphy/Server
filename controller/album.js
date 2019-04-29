@@ -5,6 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 const list = async(ctx, next) => {
+    console.log(1);
     let {
         category = 'nvshens',
             page = 1, pagesize = 16
