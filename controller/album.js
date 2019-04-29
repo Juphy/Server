@@ -4,8 +4,13 @@ const {
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+const {
+    success,
+    failed
+} = require('./base.js');
+
 const list = async(ctx, next) => {
-    console.log(1);
+    let p = ctx.request.params;
     let {
         category = 'nvshens',
             page = 1, pagesize = 16
@@ -19,7 +24,7 @@ const list = async(ctx, next) => {
             }
         },
         order: [
-            ['create_time', 'DESC']
+            ['create_time', 'ASC']
         ],
         offset: (page - 1) * pagesize,
         limit: pagesize * 1
