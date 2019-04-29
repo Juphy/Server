@@ -24,7 +24,7 @@ const list = async(ctx, next) => {
             }
         },
         order: [
-            ['create_time', 'DESC']
+            ['day', 'DESC']
         ],
         offset: (page - 1) * pagesize,
         limit: pagesize * 1
