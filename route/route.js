@@ -1,6 +1,7 @@
 const config = {
     tables: [
-        "album"
+        "album",
+        "bing"
     ],
     methods: [
         "get",
