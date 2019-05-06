@@ -1,5 +1,5 @@
 const {
-    Album
+    Image
 } = require("../lib/model");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -14,17 +14,13 @@ const list = async(ctx, next) => {
     let {
         id,
         name,
-        category = 'nvshens',
+        album_id,
         page = 1,
         pagesize = 16
     } = p;
     p['page'] = page;
     p['pagesize'] = pagesize;
-    let where = {
-        category: {
-            [Op.like]: '%' + category + '%'
-        }
-    };
+    let where = {};
     if (typeof id === 'undefined') {
         where['id'] = id;
     }
@@ -33,7 +29,10 @@ const list = async(ctx, next) => {
             [Op.like]: '%' + name + '%'
         }
     }
-    let res = await Album.findAndCountAll({
+    if (typeof album_id === 'undefined') {
+        where = album_id;
+    }
+    let res = await Image.findAndCountAll({
         where: where,
         order: [
             ['create_time', 'DESC']
