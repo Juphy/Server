@@ -25,10 +25,10 @@ const list = async(ctx, next) => {
             [Op.like]: '%' + category + '%'
         }
     };
-    if (typeof id === 'undefined') {
+    if (typeof id !== 'undefined') {
         where['id'] = id;
     }
-    if (typeof name === 'undefined') {
+    if (typeof name !== 'undefined') {
         where['name'] = {
             [Op.like]: '%' + name + '%'
         }

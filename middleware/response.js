@@ -19,6 +19,6 @@ module.exports = async(ctx, next) => {
             }
         }
     } catch (e) {
-
+        console.log(e);
     }
 }
