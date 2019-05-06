@@ -20,11 +20,7 @@ const list = async(ctx, next) => {
     } = p;
     p['page'] = page;
     p['pagesize'] = pagesize;
-    let where = {
-        name: {
-            [Op.like]: '%' + '' + '%'
-        }
-    };
+    let where = {};
     if (typeof id !== 'undefined') {
         where['id'] = id;
     }
@@ -37,6 +33,7 @@ const list = async(ctx, next) => {
         where['album_id'] = album_id;
     }
     let res = await Image.findAndCountAll({
+        where: where,
         order: [
             ['id', 'DESC']
         ],
