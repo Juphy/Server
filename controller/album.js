@@ -29,7 +29,7 @@ const list = async(ctx, next) => {
         where['id'] = id;
     }
     if (typeof name === 'undefined') {
-        where = {
+        where['name'] = {
             [Op.like]: '%' + name + '%'
         }
     }

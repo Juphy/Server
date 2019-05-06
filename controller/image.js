@@ -25,12 +25,12 @@ const list = async(ctx, next) => {
         where['id'] = id;
     }
     if (typeof name === 'undefined') {
-        where = {
+        where['name'] = {
             [Op.like]: '%' + name + '%'
         }
     }
     if (typeof album_id === 'undefined') {
-        where = album_id;
+        where['album_id'] = album_id;
     }
     let res = await Image.findAndCountAll({
         where: where,
