@@ -11,7 +11,7 @@ app.use(bodyParser({
 app.use(async(ctx, next) => {
     console.log('IP:', ctx.headers['x-forwarded-for'],
         ctx.socket.remoteAddress,
-        ctx.request.ip);
+        ctx.request.ips);
     await next();
 })
 
