@@ -3,11 +3,11 @@ module.exports = async(ctx, next) => {
         await next().catch(err => {
             throw err;
         });
-        if (ctx.body) ctx.status = ctx.body.code;
+        if (ctx.body) ctx.status = ctx.body.status;
         if (ctx.status === 200) {
             const p = ctx.request.params;
             if ('page' in p && 'page_size' in p) {
-                const body = ctx.body['res'];
+                const body = ctx.body['result'];
                 let obj = {
                     page: {},
                     data: {}
@@ -15,7 +15,7 @@ module.exports = async(ctx, next) => {
                 obj.data = body['rows'];
                 obj.page['count'] = body.count;
                 obj.page['total'] = Math.ceil(body.count / p.page_size);
-                ctx.body['res'] = obj;
+                ctx.body['result'] = obj;
             }
         }
     } catch (e) {

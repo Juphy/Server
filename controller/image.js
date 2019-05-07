@@ -15,6 +15,7 @@ const list = async(ctx, next) => {
         id,
         name,
         album_id,
+        album_name,
         page = 1,
         pagesize = 16
     } = p;
@@ -31,6 +32,11 @@ const list = async(ctx, next) => {
     }
     if (typeof album_id !== 'undefined') {
         where['album_id'] = album_id;
+    }
+    if (typeof album_name !== 'undefined') {
+        where['album_name'] = {
+            [Op.like]: '%' + album_name + '%'
+        }
     }
     let res = await Image.findAndCountAll({
         where: where,

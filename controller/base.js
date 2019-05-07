@@ -1,18 +1,16 @@
 let success = (data, msg = '', attr = '') => {
     return {
-        res: data,
+        result: data,
         msg: msg,
-        attr: attr,
-        code: 200
+        status: 200
     }
 }
 
 let failed = (msg = '', attr = '') => {
     return {
-        res: null,
+        result: null,
         msg: msg,
-        attr: attr,
-        code: 400
+        status: 400
     }
 }
 

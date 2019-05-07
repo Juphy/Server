@@ -2,7 +2,9 @@ const config = {
     tables: [
         "album",
         "bing",
-        "image"
+        "image",
+        "picture",
+        "photo"
     ],
     methods: [
         "get",
