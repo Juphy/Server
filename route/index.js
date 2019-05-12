@@ -1,7 +1,7 @@
 const router = require('koa-router')({
     prefix: '/'
 })
-const controller = require("../controller");
+
 const { tables, methods } = require('./route');
 
 let routes = tables.reduce((obj, key) => {
