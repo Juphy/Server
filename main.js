@@ -2,7 +2,7 @@ const Koa = require("koa"),
     { port: port } = require('./config'),
     middleware = require('./middleware'),
     bodyParser = require('koa-bodyparser');
-    
+
 const app = new Koa();
 
 app.use(bodyParser({
@@ -23,6 +23,7 @@ app.use(middleware.request)
 app.use(middleware.response)
 
 const router = require('./route')
+
 app.use(router.routes())
 
 app.listen(port, () => console.log(new Date(), port));
