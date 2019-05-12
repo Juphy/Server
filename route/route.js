@@ -4,7 +4,8 @@ const config = {
         "bing",
         "image",
         "picture",
-        "photo"
+        "photo",
+        'tupian'
     ],
     methods: [
         "get",
