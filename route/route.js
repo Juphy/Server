@@ -5,7 +5,8 @@ const config = {
         "image",
         "picture",
         "photo",
-        'tupian'
+        'tupian',
+        'meitu'
     ],
     methods: [
         "get",
