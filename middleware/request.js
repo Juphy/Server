@@ -1,6 +1,7 @@
 module.exports = async(ctx, next) => {
     let params = new Object(),
         method = ctx.request.method;
+
     switch (method) {
         case 'GET':
             params = ctx.query;
@@ -9,9 +10,11 @@ module.exports = async(ctx, next) => {
             params = ctx.request.body;
             break;
     }
+    
     if (typeof params === 'string') {
         params = JSON.parse(params);
     }
+
     ctx.request['params'] = params;
     await next();
 }

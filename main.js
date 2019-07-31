@@ -2,6 +2,7 @@ const Koa = require("koa"),
     { port: port } = require('./config'),
     middleware = require('./middleware'),
     bodyParser = require('koa-bodyparser');
+
 const app = new Koa();
 
 app.use(bodyParser({
@@ -9,9 +10,11 @@ app.use(bodyParser({
 }))
 
 app.use(async(ctx, next) => {
+    
     console.log('IP:', ctx.headers['x-forwarded-for'],
         ctx.socket.remoteAddress,
         ctx.request.ips);
+
     await next();
 })
 
@@ -22,6 +25,7 @@ app.use(middleware.request)
 app.use(middleware.response)
 
 const router = require('./route')
+
 app.use(router.routes())
 
 app.listen(port, () => console.log(new Date(), port));
